@@ -11,6 +11,7 @@ class Rhombus {
 private:
 	int diagonalH;
 	int diagonalV;
+	int side();
 public:
 	Rhombus();
 	Rhombus(int dH, int dV);
@@ -19,6 +20,14 @@ public:
 	Rhombus(const Rhombus& r);
 	Rhombus& operator=(const Rhombus& r);
 	bool operator==(const Rhombus& r);
+
+	int GetPerimeter();
+	int GetArea();
+	int GetDiagonalH();
+	int GetDiagonalV();
+	void SetDiagonalH (int h);
+	void SetDiagonalV (int v);
+
 };
 
 

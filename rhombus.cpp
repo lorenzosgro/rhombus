@@ -9,8 +9,8 @@
 /// @brief defalut constructor
 Rhombus:: Rhombus() {
 	cout << "rhombus default constructor" << endl;
-	diagonalH = 0;
-	diagonalV = 0;
+	diagH = 0;
+	diagV = 0;
 }
 
 /// @brief default destructor
@@ -21,19 +21,19 @@ Rhombus:: ~Rhombus() {
 /// @brief constructor whit parameter
 /// @param dH horizontal diagonal
 /// @param dV vertical diagonal
-Rhombus::Rhombus(int dH, int dV) {
+Rhombus::Rhombus(float dH, float dV) {
 
-	diagonalH = 0;
-	diagonalV = 0;
+	diagH = 0;
+	diagV = 0;
 
 	cout << "rhombus constructor with parameters" << endl;
 
 	if (dH > 0)
-		diagonalH = dH;
+		diagH = dH;
 	else
 		cout << "error,invalid horizontal diagonal" << endl;
 	if (dV> 0)
-		diagonalV = dV;
+		diagV = dV;
 	else
 		cout << "error,invalid vertical diagonal" << endl;
 }
@@ -42,8 +42,8 @@ Rhombus::Rhombus(int dH, int dV) {
 /// @param &r address of rhombus object
 Rhombus::Rhombus(const Rhombus& r) {
 	cout << "deep copy constructor" << endl;
-	diagonalH = r.diagonalH;
-	diagonalV = r.diagonalV;
+	diagH = r.diagH;
+	diagV = r.diagV;
 }
 
 /// @brief overloading of equal operator
@@ -51,8 +51,8 @@ Rhombus::Rhombus(const Rhombus& r) {
 /// @return address of rhombus object
 Rhombus &Rhombus :: operator=(const Rhombus& r) {
 	cout << "rhombus equal operator" << endl;
-	diagonalH = r.diagonalH;
-	diagonalV = r.diagonalV;
+	diagH = r.diagH;
+	diagV = r.diagV;
 	return *this;
 }
 
@@ -61,7 +61,7 @@ Rhombus &Rhombus :: operator=(const Rhombus& r) {
 ///  @return bool value
 bool Rhombus::operator == (const Rhombus& r) {
 	cout << "rhombus compare operator" << endl;
-	if (diagonalH == r.diagonalH && diagonalV == r.diagonalV)
+	if (diagH == r.diagH && diagV == r.diagV)
 		return true;
 	else
 		return false;
@@ -69,52 +69,77 @@ bool Rhombus::operator == (const Rhombus& r) {
 
 /// @brief side calculus
 /// @return side of rhombus
-int Rhombus :: side() {
-	return(sqrt (((diagonalH / 2)^2) + (diagonalV/ 2)^2));
+float Rhombus :: Side() {
+	return ( sqrt (( pow( diagH / 2,2 ) + pow(diagV/2,2 ))));
 } 
 
 /// @brief get perimeter of rhombus
 /// @return perimeter of rhombus
-int Rhombus::GetPerimeter() {
+float Rhombus::GetPerimeter() {
 	cout << "rhombus perimeter" << endl;
-	return (side() * 4);
+	return (Side() * 4);
 }
 
 /// @brief get area of rhombus
 /// @return area of rhombus
-int Rhombus::GetArea() {
+float Rhombus::GetArea() {
 	cout << "rhombus area" << endl;
-	return(diagonalH * diagonalV / 2);
+	return(diagH * diagV / 2);
 }
 
 /// @brief get horizontal diagonal of rhombus
 /// @return horizontal diagonal of rhombus
-int Rhombus::GetDiagonalH() {
+float Rhombus::GetDiagH() {
 	cout << "rhombus horizontal diagonal" << endl;
-	return diagonalH;
+	return diagH;
 }
 
 /// @brief get vertical diagonal of rhombus
 /// @return vertical diagonal of rhombus
-int Rhombus::GetDiagonalV() {
+float Rhombus::GetDiagV() {
 	cout << "rhombus vertical diagonal" << endl;
-	return diagonalV;
+	return diagV;
 }
 
 /// @brief setting horizontal diagonal of rhombus
 /// @param h horizontal diagonal to set
-void Rhombus:: SetDiagonalH(int h) {
+void Rhombus:: SetDiagH(float h) {
 	if (h > 0)
-		diagonalH = h;
+		diagH = h;
 	else
 		cout << "invalid value of horizontal diagonal" << endl;
 }
 
 /// @brief setting vertical diagonal of rhombus
 /// @param v vertical diagonal to set
-void Rhombus::SetDiagonalV(int v) {
+void Rhombus::SetDiagV(float v) {
 	if (v > 0)
-		diagonalV = v;
+		diagV = v;
 	else
 		cout << "invalid value of vertical diagonal" << endl;
+}
+
+/// @brief setting vertical and horizontal diagonal of rhombus
+/// @param v vertical diagonal to set
+/// @param h horizontal diagonal to set
+void Rhombus::SetDim(float dH,float dV) {
+	cout << "setting vertical and horizontal diagonal" << endl;
+	SetDiagH(dH);
+	SetDiagV(dV);
+}
+
+/// @brief get side of rhombus
+/// @return side of rhombus
+float Rhombus::GetSide() {
+	cout << "getting side value" << endl;
+	return(Side());
+}
+
+/// @brief get vertical and horizontal diagonal of rhombus
+/// @parameter &dH location for return value of horizontal diagonal
+/// @parameter &dV location for return value of vertical diagonal
+void Rhombus::GetDiagonals(float &dH, float &dV) {
+	cout << "getting diagonals" << endl;
+	dH = GetDiagH();
+	dV = GetDiagV();
 }
